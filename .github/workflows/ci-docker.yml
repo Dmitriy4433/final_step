@@ -30,7 +30,7 @@ jobs:
           context: ./app
           push: true
           tags: |
-            ${{ secrets.IMAGE_NAME }}:latest
+            ${{ secrets.IMAGE_NAME }}:v1.0
             ${{ secrets.IMAGE_NAME }}:${{ github.sha }}
           labels: |
             org.opencontainers.image.source=${{ github.repository }}

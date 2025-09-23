@@ -7,3 +7,7 @@ __pycache__/
 *.env
 .git
 .gitignore
+.venv
+__pycache__
+*.pyc
+
