@@ -37,32 +37,25 @@
 #             org.opencontainers.image.revision=${{ github.sha }}
 
 
-name: build-and-push
+name: ci: build & push
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
     paths:
-      - 'app/**'
-      - '.github/workflows/ci-docker.yml'
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Image tag (e.g. v2)'
-        required: true
-        default: 'v2'
+      - "app/**"
+      - ".github/workflows/ci-docker.yml"
+  workflow_dispatch: {}
 
 env:
   IMAGE: dmitriy5015/final-appdpon
-  TAG: ${{ github.event.inputs.tag || 'v2' }}
+  TAG: v3              # <— міняєш тут (v4, v5, ...)
 
 jobs:
   docker:
-    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -70,11 +63,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build & Push
-        uses: docker/build-push-action@v6
+      - name: Build and push
+        uses: docker/build-push-action@v5
         with:
           context: ./app
           file: app/Dockerfile
           push: true
-          tags: |
-            ${{ env.IMAGE }}:${{ env.TAG }}
+          tags: ${{ env.IMAGE }}:${{ env.TAG }}
