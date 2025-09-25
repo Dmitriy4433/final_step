@@ -41,22 +41,25 @@ name: build-and-push
 
 on:
   push:
-    branches: [ "main" ]
-    paths: [ "app/**", ".github/workflows/ci-docker.yml" ]
+    branches: [ main ]
+    paths:
+      - 'app/**'
+      - '.github/workflows/ci-docker.yml'
   workflow_dispatch:
     inputs:
       tag:
-        description: "Image tag (e.g. v1.0, v2)"
+        description: 'Image tag (e.g. v2)'
         required: true
-        default: "v1.0"
+        default: 'v2'
+
+env:
+  IMAGE: dmitriy5015/final-appdpon
+  TAG: ${{ github.event.inputs.tag || 'v2' }}
 
 jobs:
   docker:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
-    env:
-      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/dpon-backend
-      TAG: ${{ github.event.inputs.tag || 'v1.0' }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -67,10 +70,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build image
-        run: |
-          docker build -t "$IMAGE:$TAG" -f app/Dockerfile app
-
-      - name: Push image
-        run: |
-          docker push "$IMAGE:$TAG"
+      - name: Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./app
+          file: app/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ env.TAG }}
