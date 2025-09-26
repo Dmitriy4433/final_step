@@ -47,7 +47,7 @@ on:
 
 env:
   IMAGE: dmitriy5015/final-appdpon
-  TAG: v3.2   # міняєш тільки тут
+  TAG: v4.0   # міняєш тільки тут
 
 jobs:
   build:
