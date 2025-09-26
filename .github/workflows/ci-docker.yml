@@ -37,22 +37,21 @@
 #             org.opencontainers.image.revision=${{ github.sha }}
 
 
-name: "ci: build & push"
+name: Build and Push Docker Image
 
 on:
   push:
     branches: ["main"]
-    paths:
-      - "app/**"
-      - ".github/workflows/ci-docker.yml"
+    paths: ["app/**", ".github/workflows/ci-docker.yml"]
   workflow_dispatch:
 
 env:
-  IMAGE: dmitriy5015/final-appdpon     # твій репозиторій у Docker Hub
-  TAG: v3.1                            # міняєш ТІЛЬКИ тут (v4, v5, ...)
+  IMAGE: dmitriy5015/final-appdpon
+  TAG: v3.2   # міняєш тільки тут
 
 jobs:
-  docker:
+  build:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -64,18 +63,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: "Build & Push"
+      - name: Build & Push
         uses: docker/build-push-action@v6
         with:
           context: ./app
           file: app/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}:${{ env.TAG }}
-          # якщо колись захочеш ще latest — розкоментуй нижче:
-          # tags: |
-          #   ${{ env.IMAGE }}:${{ env.TAG }}
-          #   ${{ env.IMAGE }}:latest
-
-        #  labels: |
-        #    org.opencontainers.image.source=${{ github.repository }}
-        #    org.opencontainers.image.revision=${{ github.sha }}
