@@ -12,13 +12,11 @@ def index():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Backend v5.0</title>
+  <title>Backend v5.1</title>
   <style>
     body {{
-      #background-color: #FFD700;   /* темний фон */
-      #color: #e5e7eb;              /* світлий текст */
       background-color: #7C3AED;   /* ФІОЛЕТОВИЙ */
-      color: #ffffff;              /* контрастний текст */
+      color: #111111;              /* контрастний текст */
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 80px;
@@ -47,8 +45,7 @@ def index():
 <body>
   <div class="ip">{ip}</div>
   <div class="label">your public IP</div>
-  #<div class="host">hostname: <strong>{hostname}</strong></div>
-  <div class="host">version: <b>v5.0</b> • hostname: <strong>{hostname}</strong></div>
+  <div class="host">version: <b>v5.1</b> • hostname: <strong>{hostname}</strong></div>
 </body>
 </html>
 """
