@@ -2,9 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-deployment
-  namespace: backend
-  labels:
-    app: app-deployment
+  namespace: argocd-app
 spec:
   replicas: 1
   selector:
@@ -16,20 +14,16 @@ spec:
         app: app-deployment
     spec:
       containers:
-        - name: backend
-          image: dmitriy5015/final-appdpon:v3   # ← тут мінятимеш тег
+        - name: argocd-app
+          image: dmitriy5015/final-appdpon:v4.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
+            httpGet: { path: "/", port: 8080 }
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: "/", port: 8080 }
             initialDelaySeconds: 5
             periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 15
-            periodSeconds: 20

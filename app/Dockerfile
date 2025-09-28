@@ -16,8 +16,8 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt && useradd -m -u 10001 appuser
 
-COPY server.py ./
+COPY web-app.py ./
 
 EXPOSE 8080
 USER appuser
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8080", "server:app"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8080", "web-app:app"]
