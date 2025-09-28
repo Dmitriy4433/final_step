@@ -5,14 +5,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt && useradd -m appuser
-
-# COPY server.py ./
-
-# EXPOSE 8080
-# USER appuser
-#CMD ["python", "server.py"]
- 
 
 RUN pip install --no-cache-dir -r requirements.txt && useradd -m -u 10001 appuser
 

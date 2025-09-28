@@ -1,26 +1,3 @@
-# from flask import Flask, jsonify
-# import os, socket
-
-# app = Flask(__name__)
-
-# @app.get("/")
-# def root():
-#     pod_ip = os.getenv("POD_IP")
-#     if not pod_ip:
-#         try:
-#             pod_ip = socket.gethostbyname(socket.gethostname())
-#         except Exception:
-#             pod_ip = "unknown"
-#     return jsonify({"ok": True, "pod_ip": pod_ip, "hostname": socket.gethostname()}), 200
-
-# @app.get("/healthz")
-# def healthz():
-#     return "ok", 200
-
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=int(os.getenv("PORT", "8080")))
-
-
 from flask import Flask
 import socket
 
@@ -35,11 +12,13 @@ def index():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Backend</title>
+  <title>Backend v5.0</title>
   <style>
     body {{
-      background-color: #0f172a;   /* темний фон */
-      color: #e5e7eb;              /* світлий текст */
+      #background-color: #FFD700;   /* темний фон */
+      #color: #e5e7eb;              /* світлий текст */
+      background-color: #7C3AED;   /* ФІОЛЕТОВИЙ */
+      color: #ffffff;              /* контрастний текст */
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 80px;
@@ -55,7 +34,7 @@ def index():
       margin-bottom: 24px;
     }}
     .host {{
-      font-size: 24px;             /* <-- збільшив тут */
+      font-size: 24px;            /* середній розмір для hostname */
       font-weight: 600;
       color: #cbd5e1;
       margin-top: 6px;
@@ -68,7 +47,8 @@ def index():
 <body>
   <div class="ip">{ip}</div>
   <div class="label">your public IP</div>
-  <div class="host">hostname: <strong>{hostname}</strong></div>
+  #<div class="host">hostname: <strong>{hostname}</strong></div>
+  <div class="host">version: <b>v5.0</b> • hostname: <strong>{hostname}</strong></div>
 </body>
 </html>
 """

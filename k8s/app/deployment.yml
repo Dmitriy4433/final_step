@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: argocd-app
-          image: dmitriy5015/final-appdpon:v4.2
+          image: dmitriy5015/final-appdpon:v5.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
