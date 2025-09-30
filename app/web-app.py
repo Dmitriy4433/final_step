@@ -12,7 +12,7 @@ def index():
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Backend v5.1</title>
+  <title>Backend v5.4</title>
   <style>
     body {{
       background-color: #7C3AED;   /* ФІОЛЕТОВИЙ */
@@ -45,7 +45,7 @@ def index():
 <body>
   <div class="ip">{ip}</div>
   <div class="label">your public IP</div>
-  <div class="host">version: <b>v5.1</b> • hostname: <strong>{hostname}</strong></div>
+  <div class="host">version: <b>v5.4</b> • hostname: <strong>{hostname}</strong></div>
 </body>
 </html>
 """
