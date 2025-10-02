@@ -18,8 +18,8 @@ def index():
   <title>Backend {version}</title>
   <style>
     body {{
-      background-color: #7C3AED;
-      color: #111111;
+      background-color: #0A2540;
+      color: #FFFFFF;
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 80px;
@@ -37,11 +37,11 @@ def index():
     .host {{
       font-size: 24px;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #FFFFFF;
       margin-top: 6px;
     }}
     .host strong {{
-      color: #60a5fa;
+      color: #FFFFFF;
     }}
   </style>
 </head>

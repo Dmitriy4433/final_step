@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: backend
-          image: dmitriy5015/final-appdpon:v6.5
+          image: dmitriy5015/final-appdpon:v7.0
           env:
           - name: APP_VERSION
-            value: "v6.5"
+            value: "v6.0"  # APP_VERSION  # 
           ports:
             - containerPort: 8080
           readinessProbe:
