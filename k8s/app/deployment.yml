@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: dmitriy5015/final-appdpon:v6
+          image: dmitriy5015/final-appdpon:v6.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

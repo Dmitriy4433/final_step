@@ -11,7 +11,7 @@ permissions:
 
 env:
   IMAGE: dmitriy5015/final-appdpon
-  TAG: v6 # змінюємо версію образу вручну тільки тут 
+  TAG: v6.1 # змінюємо версію образу вручну тільки тут 
 
 jobs:
   build:
