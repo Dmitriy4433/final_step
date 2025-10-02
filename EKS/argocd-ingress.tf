@@ -5,7 +5,6 @@ resource "kubernetes_ingress_v1" "argocd_custom" {
     namespace = "argocd"
     annotations = {
       "nginx.ingress.kubernetes.io/ssl-redirect"     = "true"
-      "nginx.ingress.kubernetes.io/force-ssl-redirect" = "true"
       "nginx.ingress.kubernetes.io/backend-protocol" = "HTTP"
       "external-dns.alpha.kubernetes.io/hostname"    = "argocd.${var.name}.${var.zone_name}"
     }

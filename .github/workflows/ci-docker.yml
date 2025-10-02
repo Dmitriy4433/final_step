@@ -4,11 +4,14 @@ on:
   push:
     branches: ["main"]
     paths: ["app/**", ".github/workflows/ci-docker.yml"]
-  workflow_dispatch:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
 
 env:
   IMAGE: dmitriy5015/final-appdpon
-  TAG: v5.4   # міняєш тільки тут
+  TAG: v6 # змінюємо версію образу вручну тільки тут 
 
 jobs:
   build:
@@ -31,3 +34,12 @@ jobs:
           file: app/Dockerfile
           push: true
           tags: ${{ env.IMAGE }}:${{ env.TAG }}
+
+      - name: Update Kubernetes manifest
+        run: |
+          sed -i 's|^\(\s*image:\s*\).*$|\1'${{ env.IMAGE }}':'${{ env.TAG }}'|' k8s/app/deployment.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/app/deployment.yml
+          git commit -m "🚀 Update image to ${{ env.TAG }}" || echo "No changes"
+          git push
