@@ -25,6 +25,11 @@ resource "helm_release" "nginx_ingress" {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-ssl-ports"
     value = "https"
   }
+  # Редірект з HTTP (80) на HTTPS (443).
+  set {
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-ssl-redirect"
+    value = "443"
+  }
 
   # Публічний NLB.
   set {

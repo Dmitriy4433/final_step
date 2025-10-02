@@ -16,7 +16,9 @@ spec:
       containers:
         - name: backend
           image: dmitriy5015/final-appdpon:v6.1
-          imagePullPolicy: Always
+          env:
+          - name: APP_VERSION
+            value: "v6.1"  # APP_VERSION  # 
           ports:
             - containerPort: 8080
           readinessProbe:
