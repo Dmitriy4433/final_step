@@ -25,6 +25,7 @@ def index():
       padding-top: 80px;
     }}
     .ip {{
+      color: #FFD700;
       font-size: 64px;
       font-weight: 800;
       letter-spacing: 2px;
