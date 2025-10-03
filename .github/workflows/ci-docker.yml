@@ -11,7 +11,7 @@ permissions:
 
 env:
   IMAGE: dmitriy5015/final-appdpon
-  TAG: v7.0  # ЗМІНЮЄМО ТІЛЬКИ ТУТ
+  TAG: v7.1  # ЗМІНЮЄМО ТІЛЬКИ ТУТ
 
 jobs:
   build:
@@ -35,15 +35,4 @@ jobs:
           push: true
           tags: ${{ env.IMAGE }}:${{ env.TAG }}
 
-      - name: Update Kubernetes manifests
-        run: |
-          # Оновити лише наш image-рядок
-          sed -ri 's|(image:\s*)'"${{ env.IMAGE }}"':\S+|\1'"${{ env.IMAGE }}:${{ env.TAG }}"'|' k8s/app/deployment.yml
-
-          sed -ri '/name:\s*APP_VERSION/{n;s/value:.*/value: "'"${{ env.TAG }}"'"/}' k8s/app/deployment.yml
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add k8s/app/deployment.yml
-          git commit -m "🚀 Update image & APP_VERSION to ${{ env.TAG }}" || echo "No changes"
-          git push
+   
