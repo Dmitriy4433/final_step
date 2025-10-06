@@ -1,3 +1,41 @@
+# ===== Terraform =====
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+terraform.tfvars
+terraform.tfvars.json
+!.terraform.lock.hcl
+!**/*.tfvars.example
+
+# ===== Python / app =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
 app/.venv/
-**/__pycache__/
-**/*.pyc
+
+# ===== Env =====
+.env
+*.env
+app/.env
+
+# ===== kube / tools (optional) =====
+.kube/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ===== OS / IDE =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
